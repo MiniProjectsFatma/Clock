@@ -4,10 +4,39 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #10100f;
-    position:absolute;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrollbars */
+}
+
+.clock-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 canvas {
     background: white;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+    border: 10px solid #FFC0CB;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+.star {
+    position: absolute;
+    background-color: #FFF;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+

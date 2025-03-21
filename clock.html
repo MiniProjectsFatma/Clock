@@ -3,12 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clock</title>
+    <title>Cute Clock</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="clock"></div>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <div class="clock-container">
+        <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
     
-    <script src="clock.js">       </script>
+    
+    <script>
+        // Create animated stars around the clock
+        function createStars() {
+            const container = document.querySelector('.clock-container');
+            const starCount = 20;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position around the clock
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 220 + Math.random() * 100;
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                
+                // Random size
+                const size = 3 + Math.random() * 5;
+                
+                // Set styles
+                star.style.left = `calc(50% + ${x}px)`;
+                star.style.top = `calc(50% + ${y}px)`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // Call the function when the page loads
+        window.onload = function() {
+            createStars();
+        };
+    </script>
+    <script src="clock.js"></script>
 </body>
 </html>
